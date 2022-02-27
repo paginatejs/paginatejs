@@ -1,0 +1,62 @@
+{
+  "name": "@paginatejs/react",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/paginatejs-react.umd.js",
+  "module": "./dist/paginatejs-react.es.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/paginatejs-react.es.js",
+      "require": "./dist/paginatejs-react.umd.js"
+    }
+  },
+  "version": "0.0.0",
+  "description": "React Hooks and Components for Pagination",
+  "author": "Lucas Keiti Mogari <lucas@mogari.co>",
+  "license": "MIT",
+  "repository": "paginatejs/paginatejs",
+  "homepage": "https://paginatejs.com/",
+  "keywords": [
+    "react",
+    "pagination",
+    "headless",
+    "hooks",
+    "components"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "vite",
+    "test": "jest",
+    "test:watch": "npm run test -- --watchAll",
+    "build": "vite build",
+    "serve": "vite preview",
+    "release": "npm run build && npm run test && np"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0 || ^17.0.0 || ^18.0.0"
+  },
+  "dependencies": {
+    "@paginatejs/core": "*"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.15.4",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.16.0",
+    "@rollup/plugin-typescript": "^8.3.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react-hooks": "^7.0.2",
+    "@types/jest": "^27.0.2",
+    "@vitejs/plugin-react": "^1.0.6",
+    "jest": "^27.3.1",
+    "np": "^7.5.0",
+    "react": "^17.0.2",
+    "react-test-renderer": "^17.0.2",
+    "typescript": "^4.5.2",
+    "vite": "^2.6.13"
+  }
+}
