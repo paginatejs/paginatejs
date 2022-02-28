@@ -12,7 +12,7 @@
       "require": "./dist/paginatejs-core.umd.js"
     }
   },
-  "version": "0.0.0",
+  "version": "0.0.4",
   "description": "JS pagination library",
   "author": "Lucas Keiti Mogari <lucas@mogari.co>",
   "license": "MIT",
