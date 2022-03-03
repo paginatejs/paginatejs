@@ -28,7 +28,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "npm run test -- --watchAll",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "release": "npm run build && npm run test && np"
   },
   "devDependencies": {
