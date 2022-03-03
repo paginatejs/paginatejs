@@ -1,3 +1,4 @@
+import { expect, test } from 'vitest';
 import type { Page, PageItemsProps } from './pageItems';
 import { getPageItems } from './pageItems';
 
