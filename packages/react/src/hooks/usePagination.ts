@@ -2,53 +2,35 @@ import type { Pagination, PaginationProps } from '@paginatejs/core';
 import { getPagination } from '@paginatejs/core';
 import React from 'react';
 
+export type UpdatePaginationProps = {
+  totalItems?: number;
+  page?: number;
+  itemsPerPage?: number;
+};
+
+export type UpdatePagination = (props: UpdatePaginationProps) => Pagination;
+
 export type UsePaginationType = {
   pagination: Pagination;
-  setPage: (page: number) => Pagination;
-  setTotalItems: (totalItems: number) => Pagination;
-  setItemsPerPage: (itemsPerPage: number) => Pagination;
+  updatePagination: UpdatePagination;
 };
+
+const isSamePagination = (p1: PaginationProps, p2: UpdatePaginationProps): boolean =>
+  p1.page === p2.page && p1.itemsPerPage === p2.itemsPerPage && p1.totalItems === p2.totalItems;
 
 export const usePagination = (props: PaginationProps): UsePaginationType => {
   const [pagination, setPagination] = React.useState(() => getPagination(props));
-  const [updatePagination, setPage, setTotalItems, setItemsPerPage] = React.useMemo(
-    () => createHelperFunctions(pagination, setPagination),
-    [pagination.totalItems, pagination.page, pagination.itemsPerPage]
-  );
-  React.useEffect(
-    () =>
-      void (updatePagination as UpdatePagination)(props.totalItems, props.page, props.itemsPerPage),
-    [props.totalItems, props.page, props.itemsPerPage]
-  );
-  return { pagination, setPage, setTotalItems, setItemsPerPage };
-};
-
-type UpdatePagination = (totalItems?: number, page?: number, itemsPerPage?: number) => Pagination;
-
-const createHelperFunctions = (
-  pagination: Pagination,
-  setPagination: React.Dispatch<React.SetStateAction<Pagination>>
-) => {
-  const updatePagination: UpdatePagination = (
-    totalItems = pagination.totalItems,
-    page = pagination.page,
-    itemsPerPage = pagination.itemsPerPage
-  ) => {
-    if (
-      totalItems === pagination.totalItems &&
-      page === pagination.page &&
-      itemsPerPage === pagination.itemsPerPage
-    ) {
+  const updatePagination = (props2: UpdatePaginationProps) => {
+    if (isSamePagination(props, props2)) {
       return pagination;
     }
-    const newPagination = getPagination({ totalItems, page, itemsPerPage });
+    const newPagination = getPagination({ ...props, ...props2 });
     setPagination(newPagination);
     return newPagination;
   };
-  return [
-    updatePagination,
-    (page: number) => updatePagination(undefined, page),
-    (totalItems: number) => updatePagination(totalItems),
-    (itemsPerPage: number) => updatePagination(undefined, undefined, itemsPerPage),
-  ];
+  React.useEffect(
+    () => void updatePagination(props),
+    [props.totalItems, props.page, props.itemsPerPage]
+  );
+  return { pagination, updatePagination };
 };
