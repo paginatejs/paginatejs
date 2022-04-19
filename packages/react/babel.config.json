@@ -3,8 +3,8 @@
     [
       "@babel/env",
       {
-        "modules": false,
-        "loose": true
+        "loose": true,
+        "modules": false
       }
     ],
     "@babel/react",
