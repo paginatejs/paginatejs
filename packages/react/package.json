@@ -14,7 +14,7 @@
   },
   "version": "0.0.0",
   "description": "React Hooks and Components for Pagination",
-  "author": "Lucas Keiti Mogari <lucas@mogari.co>",
+  "author": "Lucas Mogari <lucas@mogari.co>",
   "license": "MIT",
   "repository": "paginatejs/paginatejs",
   "homepage": "https://paginatejs.com/",
