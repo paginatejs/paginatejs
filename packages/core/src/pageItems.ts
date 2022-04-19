@@ -29,8 +29,7 @@ export const createPageItems = (props: PageItemsProps, callback: PageItemCallbac
     last = totalPages + 1;
   } else {
     const steps = Math.floor(size / 2);
-    const extraStep = size % 2 === 0 ? 1 : 0;
-    const endRange = currentPage + extraStep;
+    const endRange = currentPage + (size % 2 === 0 ? 1 : 0);
     first = endRange - steps;
     last = currentPage + steps + 1;
     if (first < 1) {
