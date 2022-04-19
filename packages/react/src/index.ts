@@ -1,1 +1,3 @@
-export * from './hooks/usePagination';
+import usePagination from './usePagination';
+
+export { usePagination };
